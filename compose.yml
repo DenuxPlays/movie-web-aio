@@ -1,0 +1,67 @@
+version: "3"
+services:
+  pwa:
+    image: denuxgit/mw-pwa:latest
+    restart: unless-stopped
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    volumes:
+      - "./config.js:/etc/caddy/movie-web/config.js"
+    depends_on:
+      - backend
+      - proxy
+    ports:
+      - "8080:80"
+    environment:
+      MW_VERSION: ${MW_VERSION}
+
+  backend:
+    image: ghcr.io/movie-web/backend:latest
+    restart: unless-stopped
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    depends_on:
+      backend-db:
+        condition: service_healthy
+    ports:
+      - "8081:80"
+    environment:
+      MWB_POSTGRES__CONNECTION: ${MWB_POSTGRES__CONNECTION}
+      MWB_POSTGRES__MIGRATE_ON_BOOT: ${MWB_POSTGRES__MIGRATE_ON_BOOT}
+      MWB_CRYPTO__SESSION_SECRET: ${MWB_CRYPTO__SESSION_SECRET}
+      MWB_META__NAME: ${MWB_META__NAME}
+
+  backend-db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    volumes:
+      - "postgres-data:/var/lib/postgresql/data"
+    healthcheck:
+      test: [ "CMD-SHELL", "sh -c 'pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB} || exit 1'" ]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_DB: ${POSTGRES_DB}
+
+  proxy:
+    image: ghcr.io/movie-web/simple-proxy:latest
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+
+  watchtower:
+    image: containrrr/watchtower:latest
+    restart: unless-stopped
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+
+volumes:
+  postgres-data: ~
+
