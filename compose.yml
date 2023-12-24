@@ -20,7 +20,6 @@ services:
       - "8080:80"
     environment:
       MW_VERSION: ${MW_VERSION}
-      VITE_PWA_ENABLED: true
 
   backend:
     image: ghcr.io/movie-web/backend:latest
