@@ -1,4 +1,4 @@
-http://localhost:80 {
+http://:80 {
 	encode zstd gzip
 	root * /etc/caddy/movie-web
 	file_server

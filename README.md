@@ -13,7 +13,7 @@ It may work without a reverse proxy, but this is not tested or recommended.
 This guide assumes that you have docker and docker-compose installed.<br>
 
 1. Clone this repository
-2. **Optional:** modify the `compose.yml` file to your needs
+2. **Optional:** modify the `compose.yml` file to your needs 
 3. Run `docker-compose up -d` to start the containers
 
 ### Setting up a reverse proxy

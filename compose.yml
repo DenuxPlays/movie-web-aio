@@ -20,7 +20,7 @@ services:
       - "8080:80"
     environment:
       MW_VERSION: ${MW_VERSION}
-      VITE_APP_DOMAIN: "https://movies.localhost"
+      VITE_PWA_ENABLED: true
 
   backend:
     image: ghcr.io/movie-web/backend:latest
@@ -37,6 +37,8 @@ services:
       MWB_POSTGRES__MIGRATE_ON_BOOT: ${MWB_POSTGRES__MIGRATE_ON_BOOT}
       MWB_CRYPTO__SESSION_SECRET: ${MWB_CRYPTO__SESSION_SECRET}
       MWB_META__NAME: ${MWB_META__NAME}
+      MWB_SERVER__CORS: ${MWB_SERVER__CORS}
+      MWB_SERVER__ALLOW_ANY_SITE: ${MWB_SERVER__ALLOW_ANY_SITE}
 
   backend-db:
     image: postgres:16-alpine
@@ -56,8 +58,10 @@ services:
       POSTGRES_DB: ${POSTGRES_DB}
 
   proxy:
-    image: ghcr.io/movie-web/simple-proxy:latest
+    image: ghcr.io/movie-web/simple-proxy:2.0.1 # We don't use the latest version because they broke node support
     restart: unless-stopped
+#    environment:
+#      JWT_SECRET: ${MWB_CRYPTO__SESSION_SECRET}
     ports:
       - "3000:3000"
     labels:
