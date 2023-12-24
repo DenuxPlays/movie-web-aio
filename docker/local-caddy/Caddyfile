@@ -1,0 +1,11 @@
+https://movies.localhost:443 {
+	reverse_proxy http://pwa:8080
+}
+
+https://mv-backend.localhost:443 {
+	reverse_proxy 127.0.0.1:8081
+}
+
+https://mv-proxy.local.localhost:443 {
+	reverse_proxy 127.0.0.1:3000
+}
