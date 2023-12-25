@@ -1,0 +1,17 @@
+version: "3"
+services:
+  pwa:
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+
+  backend:
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+
+  backend-db:
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+
+  proxy:
+    labels:
+      - "com.centurylinklabs.watchtower.enable=false"

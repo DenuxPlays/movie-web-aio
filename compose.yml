@@ -2,35 +2,41 @@ version: "3"
 services:
   test:
     image: denuxgit/mw-local-caddy
+    profiles:
+      - test
     restart: unless-stopped
     ports:
       - "443:443"
 
   pwa:
     image: denuxgit/mw-pwa:latest
+    profiles:
+      - all
+      - pwa
+      - backend
+      - proxy
     restart: unless-stopped
-    labels:
-      - "com.centurylinklabs.watchtower.enable=true"
+    ports:
+      - "8080:80"
     volumes:
       - "./config.js:/etc/caddy/movie-web/config.js"
     depends_on:
       - backend
       - proxy
-    ports:
-      - "8080:80"
     environment:
       MW_VERSION: ${MW_VERSION}
 
   backend:
     image: ghcr.io/movie-web/backend:latest
+    profiles:
+      - all
+      - backend
     restart: unless-stopped
-    labels:
-      - "com.centurylinklabs.watchtower.enable=true"
+    ports:
+      - "8081:80"
     depends_on:
       backend-db:
         condition: service_healthy
-    ports:
-      - "8081:80"
     environment:
       MWB_POSTGRES__CONNECTION: ${MWB_POSTGRES__CONNECTION}
       MWB_POSTGRES__MIGRATE_ON_BOOT: ${MWB_POSTGRES__MIGRATE_ON_BOOT}
@@ -41,9 +47,10 @@ services:
 
   backend-db:
     image: postgres:16-alpine
+    profiles:
+      - all
+      - backend
     restart: unless-stopped
-    labels:
-      - "com.centurylinklabs.watchtower.enable=true"
     volumes:
       - "postgres-data:/var/lib/postgresql/data"
     healthcheck:
@@ -58,9 +65,10 @@ services:
 
   proxy:
     image: ghcr.io/movie-web/simple-proxy:2.0.1 # We don't use the latest version because they broke node support
+    profiles:
+      - all
+      - proxy
     restart: unless-stopped
-#    environment:
-#      JWT_SECRET: ${MWB_CRYPTO__SESSION_SECRET}
     ports:
       - "3000:3000"
     labels:
@@ -68,6 +76,9 @@ services:
 
   watchtower:
     image: containrrr/watchtower:latest
+    profiles:
+      - all
+      - watchtower
     restart: unless-stopped
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
