@@ -55,6 +55,11 @@ handle_turnstile() {
   overrides="${overrides} -f overrides/turnstile.compose.override.yml"
 }
 
+handle_captcha() {
+  profiles="${profiles} --profile backend"
+  overrides="${overrides} -f overrides/captcha.compose.override.yml"
+}
+
 # parse command line arguments
 for arg in "$@"
 do
@@ -82,6 +87,9 @@ do
       ;;
     --turnstile)
       handle_turnstile
+      ;;
+    --captcha)
+      handle_captcha
       ;;
     *)
       echo "Unknown argument: $arg"

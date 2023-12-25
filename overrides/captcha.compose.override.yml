@@ -1,0 +1,8 @@
+version: "3"
+services:
+  backend:
+    environment:
+      # Captcha
+      MWB_CAPTCHA__ENABLED: ${MWB_CAPTCHA__ENABLED}
+      MWB_CAPTCHA__SECRET: ${MWB_CAPTCHA__SECRET}
+      MWB_CAPTCHA__CLIENT_KEY: ${MWB_CAPTCHA__CLIENT_KEY}

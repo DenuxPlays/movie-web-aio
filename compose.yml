@@ -44,6 +44,8 @@ services:
       MWB_META__NAME: ${MWB_META__NAME}
       MWB_SERVER__CORS: ${MWB_SERVER__CORS}
       MWB_SERVER__ALLOW_ANY_SITE: ${MWB_SERVER__ALLOW_ANY_SITE}
+      MWB_SERVER__TRUST_PROXY: true
+      MWB_SERVER__TRUST_CLOUDFLARE: true
 
   backend-db:
     image: postgres:16-alpine

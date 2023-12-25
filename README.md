@@ -74,6 +74,9 @@ This script accepts several flags that control its behavior:
 - `--turnstile`: This flag enables the proxy turnstile feature. This feature is used to prevent unauthorized access to
   the proxy service.
 
+- `--captcha`: This flag enables the backend captcha feature. This feature is used to prevent unauthorized access to the
+  backend service.
+
 You can combine these flags as needed. For example, you can use `sh deploy.sh --backend --proxy` to start the backend,
 pwa and proxy services.
 
