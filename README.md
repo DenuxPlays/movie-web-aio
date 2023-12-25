@@ -14,9 +14,9 @@ It may work without a reverse proxy, but this is not tested or recommended.
 - automatic updates
 - fully self-hosted (even the proxy)
 - configurable features (see [here](#deploy-command-documentation))
-- proxy turnstile support (--turnstile flag)
-- backend captcha support (--captcha flag)
-- backend rate limit support (--ratelimit flag)
+- proxy turnstile support (`--turnstile` flag)
+- backend captcha support (`--captcha` flag)
+- backend rate limit support (`--ratelimit` flag)
 
 ## Usage
 
