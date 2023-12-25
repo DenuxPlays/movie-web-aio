@@ -19,6 +19,14 @@ It may work without a reverse proxy, but this is not tested or recommended.
 - backend captcha support (`--captcha` flag)
 - backend rate limit support (`--ratelimit` flag)
 
+<details><summary>And much more:</summary>
+
+- simple cli interface and fully documented
+- automatic updates (via watchtower)
+- fully alpine based images
+
+</details>
+
 ## Usage
 
 This guide assumes that you have docker and docker-compose installed.<br>

@@ -1,6 +1,6 @@
 window.__CONFIG__ = {
 // The URL for the CORS proxy, the URL must NOT end with a slash!
-VITE_CORS_PROXY_URL: "http://localhost:3000",
+VITE_CORS_PROXY_URL: "https://proxy.movies.localhost",
 
 // The READ API key to access TMDB
 VITE_TMDB_READ_API_KEY: "",
@@ -12,7 +12,7 @@ VITE_DMCA_EMAIL: null,
 VITE_NORMAL_ROUTER: false,
 
 // The backend URL to communicate with, defaults to the movie-web hosted one at backend.movie-web.app
-VITE_BACKEND_URL: "http://localhost:8081",
+VITE_BACKEND_URL: "https://backend.movies.localhost",
 
 // A comma separated list of disallowed IDs in the case of a DMCA claim - in the format "series-<id>" and "movie-<id>"
 VITE_DISALLOWED_IDS: ""
