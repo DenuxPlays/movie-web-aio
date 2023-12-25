@@ -77,6 +77,11 @@ This script accepts several flags that control its behavior:
 - `--captcha`: This flag enables the backend captcha feature. This feature is used to prevent unauthorized access to the
   backend service.
 
+- `--ratelimit`: This flag enables the backend rate limit feature. This feature is used to prevent abuse of the backend
+  service.
+
+- `--down`: This flag stops all the Docker Compose services.
+
 You can combine these flags as needed. For example, you can use `sh deploy.sh --backend --proxy` to start the backend,
 pwa and proxy services.
 

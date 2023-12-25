@@ -1,0 +1,18 @@
+version: "3"
+services:
+  backend:
+    environment:
+      # ratelimit
+      MWB_RATELIMITS__ENABLED: true
+      MWB_RATELIMITS__REDIS_URL: ${MWB_RATELIMITS__REDIS_URL}
+    depends_on:
+      backend-redis:
+        condition: service_healthy
+
+  backend-redis:
+    image: redis:7-alpine3.19
+    restart: unless-stopped
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    healthcheck:
+      test: [ "CMD", "redis-cli", "--raw", "incr", "ping" ]

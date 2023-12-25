@@ -22,8 +22,8 @@ handle_init() {
 
 # function to handle --all flag
 handle_all() {
-  profiles="${profiles} --profile all"
-  overrides="${overrides} -f overrides/watchtower.compose.override.yml -f overrides/turnstile.compose.override.yml"
+  profiles="${profiles} --profile all --profile test"
+  overrides="${overrides} -f overrides/watchtower.compose.override.yml -f overrides/turnstile.compose.override.yml -f overrides/captcha.compose.override.yml -f overrides/ratelimit.compose.override.yml"
 }
 
 # function to handle --backend flag
@@ -60,6 +60,22 @@ handle_captcha() {
   overrides="${overrides} -f overrides/captcha.compose.override.yml"
 }
 
+handle_ratelimit() {
+  profiles="${profiles} --profile backend"
+  overrides="${overrides} -f overrides/ratelimit.compose.override.yml"
+}
+
+handle_down() {
+  docker-compose -f compose.yml \
+  -f overrides/watchtower.compose.override.yml \
+  -f overrides/turnstile.compose.override.yml \
+  -f overrides/captcha.compose.override.yml \
+  -f overrides/ratelimit.compose.override.yml \
+  --profile all \
+  --profile test down
+  exit 0
+}
+
 # parse command line arguments
 for arg in "$@"
 do
@@ -90,6 +106,12 @@ do
       ;;
     --captcha)
       handle_captcha
+      ;;
+    --ratelimit)
+      handle_ratelimit
+      ;;
+    --down)
+      handle_down
       ;;
     *)
       echo "Unknown argument: $arg"
