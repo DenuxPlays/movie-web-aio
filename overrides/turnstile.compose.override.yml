@@ -1,0 +1,6 @@
+version: "3"
+services:
+  proxy:
+    environment:
+      TURNSTILE_SECRET: ${TURNSTILE_SECRET}
+      JWT_SECRET: ${JWT_SECRET}

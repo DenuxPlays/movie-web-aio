@@ -20,15 +20,15 @@ handle_init() {
   exit 0
 }
 
-# function to handle --backend flag
-handle_backend() {
-  profiles="${profiles} --profile backend"
-}
-
 # function to handle --all flag
 handle_all() {
   profiles="${profiles} --profile all"
-  overrides="${overrides} -f overrides/watchtower.compose.override.yml"
+  overrides="${overrides} -f overrides/watchtower.compose.override.yml -f overrides/turnstile.compose.override.yml"
+}
+
+# function to handle --backend flag
+handle_backend() {
+  profiles="${profiles} --profile backend"
 }
 
 # function to handle --pwa flag
@@ -48,6 +48,11 @@ handle_test() {
 handle_watchtower() {
   profiles="${profiles} --profile watchtower"
   overrides="${overrides} -f overrides/watchtower.compose.override.yml"
+}
+
+handle_turnstile() {
+  profiles="${profiles} --profile proxy"
+  overrides="${overrides} -f overrides/turnstile.compose.override.yml"
 }
 
 # parse command line arguments
@@ -74,6 +79,9 @@ do
       ;;
     --watchtower)
       handle_watchtower
+      ;;
+    --turnstile)
+      handle_turnstile
       ;;
     *)
       echo "Unknown argument: $arg"

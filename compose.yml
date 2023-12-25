@@ -71,8 +71,6 @@ services:
     restart: unless-stopped
     ports:
       - "3000:3000"
-    labels:
-      - "com.centurylinklabs.watchtower.enable=true"
 
   watchtower:
     image: containrrr/watchtower:latest

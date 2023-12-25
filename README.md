@@ -8,6 +8,16 @@ backend.<br>
 This project is designed to run behind a reverse proxy like nginx or traefik.<br>
 It may work without a reverse proxy, but this is not tested or recommended.
 
+## Features
+
+- easy setup
+- automatic updates
+- fully self-hosted (even the proxy)
+- configurable features (see [here](#deploy-command-documentation))
+- proxy turnstile support (--turnstile flag)
+- backend captcha support (--captcha flag)
+- backend rate limit support (--ratelimit flag)
+
 ## Usage
 
 This guide assumes that you have docker and docker-compose installed.<br>
@@ -16,9 +26,9 @@ This guide assumes that you have docker and docker-compose installed.<br>
 2. execute `sh deploy.sh --init` to create the required files
 3. change the `config.js` and `.env` file according to your setup
 4. **optional** change the ports in the `compose.yml` file
-5. set up a reverse proxy (see [here](README.md#setting-up-a-reverse-proxy))
+5. set up a reverse proxy (see [here](#setting-up-a-reverse-proxy))
 6. execute `sh deploy.sh --pwa --backend` to start the docker containers (
-   see [here](README.md#deploy-command-documentation))
+   see [here](#deploy-command-documentation))
 
 ## Setting up a reverse proxy
 
@@ -60,6 +70,9 @@ This script accepts several flags that control its behavior:
 
 - `--watchtower`: This flag starts the Docker Compose with the watchtower service and applies the watchtower override.
   Allowing for automatic updates of the docker images.
+
+- `--turnstile`: This flag enables the proxy turnstile feature. This feature is used to prevent unauthorized access to
+  the proxy service.
 
 You can combine these flags as needed. For example, you can use `sh deploy.sh --backend --proxy` to start the backend,
 pwa and proxy services.
