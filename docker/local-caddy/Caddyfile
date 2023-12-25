@@ -1,5 +1,5 @@
 https://movies.localhost:443 {
-	reverse_proxy http://pwa:80
+	reverse_proxy http://mw:80
 }
 
 https://backend.movies.localhost:443 {

@@ -1,0 +1,16 @@
+version: "3"
+services:
+  mw:
+    image: denuxgit/mw-pwa:latest
+    profiles:
+      - all
+      - backend
+      - proxy
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      - "./config.js:/etc/caddy/movie-web/config.js"
+    environment:
+      VITE_PWA_ENABLED: true
+      MW_VERSION: ${MW_VERSION}

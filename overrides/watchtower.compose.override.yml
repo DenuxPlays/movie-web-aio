@@ -1,6 +1,6 @@
 version: "3"
 services:
-  pwa:
+  mw:
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
 

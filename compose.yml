@@ -8,11 +8,10 @@ services:
     ports:
       - "443:443"
 
-  pwa:
-    image: denuxgit/mw-pwa:latest
+  mw:
+    image: denuxgit/mw-static:latest
     profiles:
       - all
-      - pwa
       - backend
       - proxy
     restart: unless-stopped
@@ -20,9 +19,6 @@ services:
       - "8080:80"
     volumes:
       - "./config.js:/etc/caddy/movie-web/config.js"
-    depends_on:
-      - backend
-      - proxy
     environment:
       MW_VERSION: ${MW_VERSION}
 

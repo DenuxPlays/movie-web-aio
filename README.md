@@ -14,6 +14,7 @@ It may work without a reverse proxy, but this is not tested or recommended.
 - automatic updates
 - fully self-hosted (even the proxy)
 - configurable features (see [here](#deploy-command-documentation))
+- pwa support (although not recommended | `--pwa` flag)
 - proxy turnstile support (`--turnstile` flag)
 - backend captcha support (`--captcha` flag)
 - backend rate limit support (`--ratelimit` flag)
@@ -27,7 +28,7 @@ This guide assumes that you have docker and docker-compose installed.<br>
 3. change the `config.js` and `.env` file according to your setup
 4. **optional** change the ports in the `compose.yml` file
 5. set up a reverse proxy (see [here](#setting-up-a-reverse-proxy))
-6. execute `sh deploy.sh --pwa --backend` to start the docker containers (
+6. execute `sh deploy.sh --backend` to start the docker containers (
    see [here](#deploy-command-documentation))
 
 ## Setting up a reverse proxy
@@ -60,11 +61,11 @@ This script accepts several flags that control its behavior:
 - `--init`: This flag initializes the setup by creating a `.env` and `config.js` file. These files should be modified
   according to your setup.
 
-- `--all`: This flag starts all the Docker Compose services, including pwa, backend, backend-db, proxy, and watchtower.
+- `--all`: This flag starts all the Docker Compose services, including mw, backend, backend-db, proxy, and watchtower.
 
 - `--backend`: This flag starts the Docker Compose with the backend service.
 
-- `--pwa`: This flag starts the Docker Compose with the pwa service.
+- `--pwa`: This flag enables the pwa feature for movie-web. **NOT RECOMMENDED**
 
 - `--proxy`: This flag starts the Docker Compose with the proxy service.
 
@@ -83,11 +84,11 @@ This script accepts several flags that control its behavior:
 - `--down`: This flag stops all the Docker Compose services.
 
 You can combine these flags as needed. For example, you can use `sh deploy.sh --backend --proxy` to start the backend,
-pwa and proxy services.
+mw and proxy services.
 
 ### Recommended Setup
 
 While it's possible to self-host all the services, we recommend self-hosting only the pwa and backend services. The
 proxy service should be hosted on Cloudflare for better performance and security. To do this, you can use
-the `--backend` and `--pwa` flags when running the `deploy.sh` script, and set up the proxy service separately on
+the `--backend` flag when running the `deploy.sh` script, and set up the proxy service separately on
 Cloudflare.

@@ -33,7 +33,7 @@ handle_backend() {
 
 # function to handle --pwa flag
 handle_pwa() {
-  profiles="${profiles} --profile pwa"
+  overrides="${overrides} -f overrides/pwa.compose.override.yml"
 }
 
 # function to handle --proxy flag
