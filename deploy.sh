@@ -22,7 +22,7 @@ handle_init() {
 
 # function to handle --all flag
 handle_all() {
-  profiles="${profiles} --profile all --profile test"
+  profiles="${profiles} --profile all"
   overrides="${overrides} -f overrides/watchtower.compose.override.yml -f overrides/turnstile.compose.override.yml -f overrides/captcha.compose.override.yml -f overrides/ratelimit.compose.override.yml"
 }
 
