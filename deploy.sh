@@ -66,7 +66,7 @@ handle_ratelimit() {
 }
 
 handle_down() {
-  docker-compose -f compose.yml \
+  docker compose -f compose.yml \
   -f overrides/watchtower.compose.override.yml \
   -f overrides/turnstile.compose.override.yml \
   -f overrides/captcha.compose.override.yml \

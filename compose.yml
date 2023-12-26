@@ -19,8 +19,6 @@ services:
       - "8080:80"
     volumes:
       - "./config.js:/etc/caddy/movie-web/config.js"
-    environment:
-      MW_VERSION: ${MW_VERSION}
 
   backend:
     image: ghcr.io/movie-web/backend:latest
@@ -40,8 +38,8 @@ services:
       MWB_META__NAME: ${MWB_META__NAME}
       MWB_SERVER__CORS: ${MWB_SERVER__CORS}
       MWB_SERVER__ALLOW_ANY_SITE: ${MWB_SERVER__ALLOW_ANY_SITE}
-      MWB_SERVER__TRUST_PROXY: true
-      MWB_SERVER__TRUST_CLOUDFLARE: true
+      MWB_SERVER__TRUST_PROXY: ${MWB_SERVER__TRUST_PROXY}
+      MWB_SERVER__TRUST_CLOUDFLARE: ${MWB_SERVER__TRUST_CLOUDFLARE}
 
   backend-db:
     image: postgres:16-alpine
