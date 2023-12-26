@@ -124,8 +124,8 @@ profiles="${profiles#"${profiles%%[![:space:]]*}"}"
 overrides="${overrides#"${overrides%%[![:space:]]*}"}"
 echo "Starting docker compose with profiles: $profiles and overrides: $overrides"
 # shellcheck disable=SC2086
-docker-compose -f compose.yml $overrides $profiles up -d
+docker compose -f compose.yml $overrides $profiles up -d
 # shellcheck disable=SC2086
-docker-compose -f compose.yml $overrides $profiles logs -f
+docker compose -f compose.yml $overrides $profiles logs -f
 
 cd "${WORK_DIR}"
