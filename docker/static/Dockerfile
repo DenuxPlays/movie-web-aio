@@ -5,7 +5,7 @@ RUN apk add --no-cache wget unzip
 
 COPY --chmod=664 ./Caddyfile /etc/caddy/Caddyfile
 
-ENV MW_VERSION=4.1.2
+ENV MW_VERSION=4.1.3
 
 RUN mkdir -p /etc/caddy/movie-web
 
