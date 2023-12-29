@@ -73,6 +73,9 @@ This script accepts several flags that control its behavior:
 
 - `--backend`: This flag starts the Docker Compose with the backend service.
 
+- `--static`: This flag starts the Docker Compose with the mw service. Use this if you just want to host the static
+  site.
+
 - `--pwa`: This flag enables the pwa feature for movie-web. **NOT RECOMMENDED**
 
 - `--proxy`: This flag starts the Docker Compose with the proxy service.

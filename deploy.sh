@@ -31,6 +31,10 @@ handle_backend() {
   profiles="${profiles} --profile backend"
 }
 
+handle_static() {
+  profiles="${profiles} --profile static"
+}
+
 # function to handle --pwa flag
 handle_pwa() {
   overrides="${overrides} -f overrides/pwa.compose.override.yml"
@@ -82,6 +86,9 @@ do
   case $arg in
     --init)
       handle_init
+      ;;
+    --static)
+      handle_static
       ;;
     --backend)
       handle_backend
