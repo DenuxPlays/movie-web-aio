@@ -61,7 +61,7 @@ services:
       POSTGRES_DB: ${POSTGRES_DB}
 
   proxy:
-    image: ghcr.io/movie-web/simple-proxy:2.0.1 # We don't use the latest version because they broke node support
+    image: ghcr.io/movie-web/simple-proxy:latest
     profiles:
       - all
       - proxy
