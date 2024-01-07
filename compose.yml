@@ -12,8 +12,6 @@ services:
     image: denuxgit/mw-static:latest
     profiles:
       - all
-      - backend
-      - proxy
       - static
     restart: unless-stopped
     ports:
