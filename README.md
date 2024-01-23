@@ -14,7 +14,7 @@ It may work without a reverse proxy, but this is not tested or recommended.
 - automatic updates
 - fully self-hosted (even the proxy)
 - configurable features (see [here](#deploy-command-documentation))
-- pwa support (although not recommended | `--pwa` flag)
+- pwa support (although not recommended | `VITE_PWA_ENABLED` env variable)
 - proxy turnstile support (`--turnstile` flag)
 - backend captcha support (`--captcha` flag)
 - backend rate limit support (`--ratelimit` flag)
@@ -73,7 +73,7 @@ This script accepts several flags that control its behavior:
 
 - `--backend`: This flag starts the Docker Compose with the backend service.
 
-- `--static`: This flag starts the Docker Compose with the mw service. Use this if you just want to host the static
+- `--mw`: This flag starts the Docker Compose with the mw service. Use this if you just want to host the static
   site.
 
 - `--proxy`: This flag starts the Docker Compose with the proxy service.

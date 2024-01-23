@@ -1,11 +1,21 @@
 version: "3"
 services:
+  test:
+    image: denuxgit/mw-local-caddy
+    profiles:
+      - test
+    restart: unless-stopped
+    ports:
+      - "443:443"
+
   mw:
     image: ghcr.io/movie-web/movie-web:latest
     profiles:
       - all
       - static
     restart: unless-stopped
+    environment:
+      VITE_PWA_ENABLED: ${VITE_PWA_ENABLED}
     ports:
       - "8080:80"
     volumes:

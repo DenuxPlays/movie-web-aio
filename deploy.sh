@@ -82,7 +82,7 @@ do
     --init)
       handle_init
       ;;
-    --static)
+    --mw)
       handle_static
       ;;
     --backend)
