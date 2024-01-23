@@ -35,11 +35,6 @@ handle_static() {
   profiles="${profiles} --profile static"
 }
 
-# function to handle --pwa flag
-handle_pwa() {
-  overrides="${overrides} -f overrides/pwa.compose.override.yml"
-}
-
 # function to handle --proxy flag
 handle_proxy() {
   profiles="${profiles} --profile proxy"
@@ -95,9 +90,6 @@ do
       ;;
     --all)
       handle_all
-      ;;
-    --pwa)
-      handle_pwa
       ;;
     --proxy)
       handle_proxy

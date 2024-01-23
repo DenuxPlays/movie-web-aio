@@ -1,15 +1,7 @@
 version: "3"
 services:
-  test:
-    image: denuxgit/mw-local-caddy
-    profiles:
-      - test
-    restart: unless-stopped
-    ports:
-      - "443:443"
-
   mw:
-    image: denuxgit/mw-static:latest
+    image: ghcr.io/movie-web/movie-web:latest
     profiles:
       - all
       - static
@@ -17,7 +9,7 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - "./config.js:/etc/caddy/movie-web/config.js"
+      - "./config.js:/usr/share/nginx/html/config.js"
 
   backend:
     image: ghcr.io/movie-web/backend:latest

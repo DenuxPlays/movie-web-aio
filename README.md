@@ -76,8 +76,6 @@ This script accepts several flags that control its behavior:
 - `--static`: This flag starts the Docker Compose with the mw service. Use this if you just want to host the static
   site.
 
-- `--pwa`: This flag enables the pwa feature for movie-web. **NOT RECOMMENDED**
-
 - `--proxy`: This flag starts the Docker Compose with the proxy service.
 
 - `--watchtower`: This flag starts the Docker Compose with the watchtower service and applies the watchtower override.
